@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import FacebookProvider, { Login } from 'react-facebook';
+import { Button } from 'react-bootstrap';
 var axios = require('axios');
 
 export default class LoginComponent extends Component {
@@ -32,7 +33,7 @@ export default class LoginComponent extends Component {
           onResponse={this.handleResponse}
           onError={this.handleError}
         >
-          <span>Login via Facebook</span>
+          <Button bsStyle="primary">Login via Facebook</Button>
         </Login>
       </FacebookProvider>
     );
