@@ -7,7 +7,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-facebook": "^4.0.13",
-    "react-bootstrap": "^0.32.0"
+    "react-bootstrap": "^0.31.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

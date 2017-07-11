@@ -16,9 +16,7 @@ export default class LoginComponent extends Component {
   }
 
   handleResponse = (data) => {
-    this.setState({
-      profile: data.profile
-    });
+    this.props.onSubmit(data.profile);
     console.log(data);
     this.getEvents(data.profile.id, data.tokenDetail.accessToken);
   }
