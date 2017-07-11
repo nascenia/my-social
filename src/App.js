@@ -4,9 +4,11 @@ import LoginComponent from './LoginComponent';
 
 class App extends Component {
   render() {
+    var profile = this.state.profile;
+
     return (
       <div className="App">
-        <LoginComponent />
+        {!profile.name && <LoginComponent />}
       </div>
     );
   }

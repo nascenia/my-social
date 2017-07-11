@@ -4,7 +4,21 @@ import { Button } from 'react-bootstrap';
 var axios = require('axios');
 
 export default class LoginComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: '',
+      friends: []
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleResponse = (data) => {
+    this.setState({
+      profile: data.profile
+    });
     console.log(data);
     this.getEvents(data.profile.id, data.tokenDetail.accessToken);
   }
@@ -19,6 +33,9 @@ export default class LoginComponent extends Component {
       .then(response => {
            console.log(" axios call success ");
            console.log(response);
+           this.setState({
+             friends: response.data.data
+           });
       })
       .catch(function (error) {
         console.log("axios call fail" + error);
