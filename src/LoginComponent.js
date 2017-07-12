@@ -6,19 +6,13 @@ var axios = require('axios');
 export default class LoginComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      profile: '',
-      friends: []
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
   }
 
   handleResponse = (data) => {
-    this.props.onSubmit(data.profile);
+    this.props.profile(data.profile);
     console.log(data);
-    this.getEvents(data.profile.id, data.tokenDetail.accessToken);
+    //this.getEvents(data.profile.id, data.tokenDetail.accessToken);
   }
 
   handleError = (error) => {

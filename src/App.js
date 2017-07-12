@@ -6,24 +6,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profile: ''
+      profile: {},
+      loggedin: false
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.setProfile = this.setProfile.bind(this);
   }
 
-  handleSubmit(profile) {
+  setProfile(profile) {
     this.setState(function () {
-      return profile;
+      return {
+        profile: profile,
+        loggedin: true
+      };
     });
   }
 
   render() {
-    var profile = this.state.profile;
-
     return (
       <div className="App">
-        {!profile.name && <LoginComponent />}
+        {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
       </div>
     );
   }
