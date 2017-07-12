@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Col } from 'react-bootstrap';
 import './App.css';
 import LoginComponent from './LoginComponent';
+import ProfileComponent from './ProfileComponent';
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +27,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
+        <Col xs={6} md={4}>
+          {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
+          {this.state.loggedin && <ProfileComponent profile={this.state.profile} />}
+        </Col>
       </div>
     );
   }
