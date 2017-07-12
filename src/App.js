@@ -27,10 +27,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Col xs={6} md={4}>
-          {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
-          {this.state.loggedin && <ProfileComponent profile={this.state.profile} />}
-        </Col>
+        {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
+        {this.state.loggedin &&
+          <Col xs={6} md={4}>
+            <ProfileComponent profile={this.state.profile} />
+          </Col>
+        }
       </div>
     );
   }
