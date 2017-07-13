@@ -7,13 +7,16 @@ export default class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.handleResponse = this.handleResponse.bind(this);
+    this.state = {
+      facebookScope: "email,user_friends,user_events,user_posts, publish_actions"
+    }
   }
 
   handleResponse = (data) => {
-    this.props.profile(data.profile);
+    this.props.profile(data);
     console.log(data);
-    console.log('-------- facebook feed');
-    console.log(Service.facebookFeed(data.profile.id, data.tokenDetail.accessToken));
+    console.log('-------- facebook postcreate');
+    console.log(Service.createFacebookPost(data.profile.id, data.tokenDetail.accessToken, 'this is test post, ingore it'));
   }
 
   handleError = (error) => {
@@ -24,7 +27,7 @@ export default class LoginComponent extends Component {
     return (
       <FacebookProvider appId="152690645277827">
         <Login
-          scope="email,user_friends,user_events,user_posts"
+          scope={this.state.facebookScope}
           onResponse={this.handleResponse}
           onError={this.handleError}
         >

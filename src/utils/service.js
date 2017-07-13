@@ -11,5 +11,15 @@ module.exports = {
       .catch(function (error) {
         console.log("axios call fail" + error);
       });
+  },
+
+  createFacebookPost: (u_id, access_token, msg) =>{
+    return axios.post('https://graph.facebook.com/v2.9/'+ u_id + '/feed?message=' + msg + '&access_token=' + access_token)
+      .then(response => {
+           return response.data.data;
+      })
+      .catch(function (error) {
+        console.log("createFacebookPost call fail" + error);
+      });
   }
 };
