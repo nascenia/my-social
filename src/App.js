@@ -10,16 +10,18 @@ class App extends Component {
     super(props);
     this.state = {
       profile: {},
+      access_token: '',
       loggedin: false
     };
 
-    this.setProfile = this.setProfile.bind(this);
+    this.setFbData = this.setFbData.bind(this);
   }
 
-  setProfile(profile) {
+  setFbData(profile, access_token) {
     this.setState(function () {
       return {
         profile: profile,
+        access_token: access_token,
         loggedin: true
       };
     });
@@ -28,14 +30,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
+        {!this.state.loggedin && <LoginComponent fb_data={this.setFbData} />}
         {this.state.loggedin &&
           <div>
             <Col xs={5} md={3}>
               <ProfileComponent profile={this.state.profile} />
             </Col>
-            <Col xs={7} md={5}>
-              <FeedComponent profile={this.state.profile} />
+            <Col xs={7} md={9}>
+              <FeedComponent profile_id={this.state.profile.id} access_token={this.state.access_token} />
             </Col>
           </div>
         }

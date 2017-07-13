@@ -5,29 +5,41 @@ var Service = require('./utils/service');
 export default class FeedComponent extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       feed: []
     };
-  }
 
-  render(){
-    Service.facebookFeed(data.profile.id, data.tokenDetail.accessToken)
+    Service.facebookFeed(this.props.profile_id, this.props.access_token)
       .then(function (response) {
+        console.log('------- Feed -------');
+        console.log(response.data.data);
         this.setState(function () {
           return {
-            feed: responce.data.data
+            feed: response.data.data
           };
         });
       }.bind(this));
+  }
 
+  render(){
     return (
       <div>
-        <h2>My Feed</h2>
-        <Table>
-          <tbody>
+        <h3>My Feed</h3>
+        <Table striped bordered condensed hover>
+          <thead>
             <tr>
-              <td>Test</td>
+              <td>Time</td>
+              <td>Story</td>
             </tr>
+          </thead>
+          <tbody>
+            {this.state.feed.map((item) => (
+              <tr key={item.id}>
+                <td>{item.created_time}</td>
+                <td>{item.story}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
