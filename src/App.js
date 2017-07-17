@@ -3,22 +3,25 @@ import { Col } from 'react-bootstrap';
 import './App.css';
 import LoginComponent from './LoginComponent';
 import ProfileComponent from './ProfileComponent';
+import FeedComponent from './FeedComponent';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       profile: {},
+      access_token: '',
       loggedin: false
     };
 
-    this.setProfile = this.setProfile.bind(this);
+    this.setFbData = this.setFbData.bind(this);
   }
 
-  setProfile(profile) {
+  setFbData(profile, access_token) {
     this.setState(function () {
       return {
         profile: profile,
+        access_token: access_token,
         loggedin: true
       };
     });
@@ -27,11 +30,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.loggedin && <LoginComponent profile={this.setProfile} />}
+        {!this.state.loggedin && <LoginComponent fb_data={this.setFbData} />}
         {this.state.loggedin &&
-          <Col xs={6} md={4}>
-            <ProfileComponent profile={this.state.profile} />
-          </Col>
+          <div>
+            <Col xs={5} md={3}>
+              <ProfileComponent profile={this.state.profile} />
+            </Col>
+            <Col xs={7} md={9}>
+              <FeedComponent profile_id={this.state.profile.id} access_token={this.state.access_token} />
+            </Col>
+          </div>
         }
       </div>
     );
