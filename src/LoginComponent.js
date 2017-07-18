@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
 import FacebookProvider, { Login } from 'react-facebook';
 import { Button } from 'react-bootstrap';
-var Service = require('./utils/service');
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -13,14 +12,13 @@ export default class LoginComponent extends Component {
   }
 
   handleResponse = (data) => {
-    this.props.profile(data);
+    this.props.fb_data(data.profile, data.tokenDetail.accessToken);
+    console.log('--------- Profile ---------');
     console.log(data);
-    console.log('-------- facebook postcreate');
-    console.log(Service.createFacebookPost(data.profile.id, data.tokenDetail.accessToken, 'this is test post, ingore it'));
   }
 
   handleError = (error) => {
-    this.setState({ error });
+    console.log(error);
   }
 
   render() {
