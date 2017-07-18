@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import './App.css';
 import LoginComponent from './LoginComponent';
 import ProfileComponent from './ProfileComponent';
+import PostComponent from './PostComponent';
 import FeedComponent from './FeedComponent';
 
 class App extends Component {
@@ -10,11 +11,25 @@ class App extends Component {
     super(props);
     this.state = {
       profile: {},
-      access_token: '',
-      loggedin: false
+      loggedin: false,
+      showPostForm: false,
+      access_token: ''
     };
 
     this.setFbData = this.setFbData.bind(this);
+  }
+
+  setProfile(data) {
+    console.console.log("called setProfile");
+    this.setState(function () {
+      return {
+        profile: data.profile,
+        u_id: data.profile.id,
+        access_token: data.tokenDetail.accessToken,
+        loggedin: true,
+        showPostForm: true
+      };
+    });
   }
 
   setFbData(profile, access_token) {
@@ -41,9 +56,15 @@ class App extends Component {
             </Col>
           </div>
         }
+        {
+          this.state.loggedin && this.state.showPostForm &&
+          <PostComponent facebookUserId={this.state.profile.id}
+          access_token={this.state.access_token}/>
+        }
       </div>
     );
   }
 }
+
 
 export default App;

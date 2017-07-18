@@ -6,6 +6,9 @@ export default class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.handleResponse = this.handleResponse.bind(this);
+    this.state = {
+      facebookScope: "email,user_friends,user_events,user_posts, publish_actions"
+    }
   }
 
   handleResponse = (data) => {
@@ -22,7 +25,7 @@ export default class LoginComponent extends Component {
     return (
       <FacebookProvider appId="152690645277827">
         <Login
-          scope="email,user_friends,user_events,user_posts"
+          scope={this.state.facebookScope}
           onResponse={this.handleResponse}
           onError={this.handleError}
         >
