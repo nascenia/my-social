@@ -5,6 +5,7 @@ export default class ProfileComponent extends Component {
   render() {
     console.log(this.props.profile);
     return (
+      <div>
         <h3>My Profile</h3>
         <Table striped bordered condensed hover>
           <tbody>
@@ -20,24 +21,24 @@ export default class ProfileComponent extends Component {
               <td>Gender</td>
               <td>{this.props.profile.gender}</td>
             </tr>
-          <tr>
-            <td>Actions</td>
-            <td>
-              <button
-                onClick={this.props.profile.showForm}
-              > sho post form
-              </button>
-            </td>
-
-            <td>
-              <button
-                onClick={this.props.profile.hideForm}
-              > Hide post form
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+            <tr>
+              <td>Actions</td>
+              <td>
+                <button
+                  onClick={this.props.profile.showForm}
+                > sho post form
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={this.props.profile.hideForm}
+                > Hide post form
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
     );
   }
 }
