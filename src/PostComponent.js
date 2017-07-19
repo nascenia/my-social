@@ -3,6 +3,8 @@ var Service = require('./utils/service');
 
 export default class PostComponent extends Component {
   constructor(props) {
+    console.log('------------- post compponent has been called');
+    console.log(props);
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -10,7 +12,7 @@ export default class PostComponent extends Component {
     this.state = {
       msg: '',
       u_id: this.props.facebookUserId,
-      access_token: this.props.access_token
+      accessToken: this.props.access_token
     }
   }
 
@@ -53,9 +55,10 @@ export default class PostComponent extends Component {
           onChange={this.handleChange}
         />
         <button
-          className='button'
-          type='submit'>submit
-          disable={this.state.msg.length() === 0}
+          className='btn btn-sm btn-success'
+          type='submit'
+          disabled={this.state.msg.length === 0}>
+          submit
         </button>
       </form>
     )

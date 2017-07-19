@@ -57,7 +57,7 @@ class App extends Component {
           </div>
         }
         {
-          this.state.loggedin && this.state.showPostForm &&
+          this.state.loggedin &&
           <PostComponent facebookUserId={this.state.profile.id}
           access_token={this.state.access_token}/>
         }
