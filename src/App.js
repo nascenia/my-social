@@ -17,19 +17,8 @@ class App extends Component {
     };
 
     this.setFbData = this.setFbData.bind(this);
-  }
-
-  setProfile(data) {
-    console.console.log("called setProfile");
-    this.setState(function () {
-      return {
-        profile: data.profile,
-        u_id: data.profile.id,
-        access_token: data.tokenDetail.accessToken,
-        loggedin: true,
-        showPostForm: true
-      };
-    });
+    this.hidePostCreateForm = this.hidePostCreateForm.bind(this);
+    this.showPostCreateForm = this.showPostCreateForm.bind(this);
   }
 
   setFbData(profile, access_token) {
@@ -42,25 +31,48 @@ class App extends Component {
     });
   }
 
+  hidePostCreateForm(){
+    console.log('------ app hidePostCreateForm has been called');
+    this.setState(()=>{
+      return{
+        showPostForm: false
+      };
+    })
+  }
+
+  showPostCreateForm(){
+    console.log('------ app showPostCreateForm has been called');
+    this.setState(()=>{
+      return{
+        showPostForm: true
+      };
+    })
+  }
+
   render() {
     return (
       <div className="App">
         {!this.state.loggedin && <LoginComponent fb_data={this.setFbData} />}
         {this.state.loggedin &&
-          <div>
+          <div className='row'>
             <Col xs={5} md={3}>
-              <ProfileComponent profile={this.state.profile} />
+              <ProfileComponent
+              profile={this.state.profile}
+              hideForm={this.hidePostCreateForm}
+              showForm={this.showPostCreateForm}
+              />
+              {
+                this.state.loggedin && this.state.showPostForm &&
+                <PostComponent facebookUserId={this.state.profile.id}
+                access_token={this.state.access_token}/>
+              }
             </Col>
             <Col xs={7} md={9}>
               <FeedComponent profile_id={this.state.profile.id} access_token={this.state.access_token} />
             </Col>
           </div>
         }
-        {
-          this.state.loggedin &&
-          <PostComponent facebookUserId={this.state.profile.id}
-          access_token={this.state.access_token}/>
-        }
+
       </div>
     );
   }

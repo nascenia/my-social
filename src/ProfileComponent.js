@@ -3,7 +3,6 @@ import { Table } from 'react-bootstrap';
 
 export default class ProfileComponent extends Component {
   render() {
-    console.log(this.props.profile);
     return (
       <div>
         <h3>My Profile</h3>
@@ -25,13 +24,12 @@ export default class ProfileComponent extends Component {
               <td>Actions</td>
               <td>
                 <button
-                  onClick={this.props.profile.showForm}
+                  onClick={this.props.showForm}
                 > sho post form
                 </button>
-              </td>
-              <td>
+                &nbsp;
                 <button
-                  onClick={this.props.profile.hideForm}
+                  onClick={this.props.hideForm}
                 > Hide post form
                 </button>
               </td>
