@@ -1,4 +1,4 @@
-## React application to manage my all social sites
+## An application with React JS to manage all my social media sites
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
