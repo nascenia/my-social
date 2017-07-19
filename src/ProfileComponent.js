@@ -25,7 +25,7 @@ export default class ProfileComponent extends Component {
               <td>
                 <button
                   onClick={this.props.showForm}
-                > sho post form
+                > Show post form
                 </button>
                 &nbsp;
                 <button

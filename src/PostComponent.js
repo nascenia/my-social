@@ -25,7 +25,11 @@ export default class PostComponent extends Component {
       this.state.msg
     ).then(result =>{
       console.log("createFacebookPost call success");
-      console.log(result);
+      this.setState(() =>{
+        return{
+          msg: ''
+        }
+      });
     })
     .catch(function (error) {
       console.log("createFacebookPost call fail" + error);
